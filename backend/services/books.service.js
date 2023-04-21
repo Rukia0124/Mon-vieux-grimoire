@@ -9,6 +9,7 @@ class BookService {
       throw new Error(error);
     }
   }
+
   async createBook(bookData) {
     try {
       const book = new Book({
@@ -23,6 +24,13 @@ class BookService {
       });
       await book.save();
       return book;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async getBook(bookId) {
+    try {
+      return await Book.findOne({ _id: bookId });
     } catch (error) {
       throw new Error(error);
     }
