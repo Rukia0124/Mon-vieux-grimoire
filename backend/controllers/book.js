@@ -1,28 +1,21 @@
 const Book = require("../models/Book");
 const fs = require("fs");
+const bookService = require("../services/books.service");
 
 exports.getAllBooks = (req, res, next) => {
-  Book.find()
-    .then((thing) => res.status(200).json(thing))
+  const books = bookService
+    .getAllBooks()
+    .then((books) => res.status(200).json(books))
     .catch((error) => res.status(404).json(error));
 };
 
 exports.createBook = (req, res, next) => {
-  const bookObject = JSON.parse(req.body.book);
-  const book = new Book({
-    userId: req.auth.userId,
-    title: bookObject.title,
-    author: bookObject.author,
-    year: bookObject.year,
-    genre: bookObject.genre,
-    ratings: bookObject.ratings,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
-    averageRating: bookObject.averageRating,
-  });
-  book
-    .save()
+  const bookData = JSON.parse(req.body.book);
+  bookData.imageUrl = `${req.protocol}://${req.get("host")}/images/${
+    req.file.filename
+  }`;
+  const book = bookService
+    .createBook(bookData)
     .then(() => {
       res.status(201).json({ message: "Livre créé ! " });
     })
