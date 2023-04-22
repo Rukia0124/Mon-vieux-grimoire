@@ -76,36 +76,9 @@ exports.addBookRating = (req, res, next) => {
   const grade = req.body.rating;
 
   bookService
-    .getBook(bookId)
-    .then((book) => {
-      if (!book) {
-        return res.status(404).json({ message: "Livre non trouvé" });
-      }
-
-      const rating = book.ratings.find((rating) => rating.userId === userId);
-      if (rating) {
-        return res
-          .status(400)
-          .json({ message: "Vous avez déjà noté ce livre" });
-      }
-
-      book.ratings.push({ userId, grade });
-      const ratings = book.ratings;
-      let sum = 0;
-      for (let i = 0; i < ratings.length; i++) {
-        sum += ratings[i].grade;
-      }
-
-      const averageRating = sum / ratings.length;
-
-      bookService
-        .updateBook(bookId, { ratings, averageRating })
-        .then(() => {
-          bookService.getBook(bookId).then((updatedBook) => {
-            res.status(201).json(updatedBook);
-          });
-        })
-        .catch((error) => res.status(500).json({ error }));
+    .addBookRating(bookId, userId, grade)
+    .then((updatedBook) => {
+      res.status(201).json(updatedBook);
     })
     .catch((error) => res.status(500).json({ error }));
 };

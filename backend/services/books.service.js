@@ -3,8 +3,7 @@ const Book = require("../models/Book");
 class BookService {
   async getAllBooks() {
     try {
-      const books = await Book.find().exec();
-      return books;
+      return await Book.find().exec();
     } catch (error) {
       throw new Error(error);
     }
@@ -22,8 +21,7 @@ class BookService {
         imageUrl: bookData.imageUrl,
         averageRating: bookData.averageRating,
       });
-      await book.save();
-      return book;
+      return await book.save();
     } catch (error) {
       throw new Error(error);
     }
@@ -57,13 +55,9 @@ class BookService {
         averageRating: bookData.averageRating || book.averageRating,
       };
 
-      const updatedBook = await Book.findByIdAndUpdate(
-        bookId,
-        updatedBookData,
-        { new: true }
-      );
-
-      return updatedBook;
+      return await Book.findByIdAndUpdate(bookId, updatedBookData, {
+        new: true,
+      });
     } catch (error) {
       throw new Error(error);
     }
@@ -83,20 +77,33 @@ class BookService {
       throw new Error(error);
     }
   }
-  async addBookRating(bookId, bookData) {
+  async addBookRating(bookId, userId, grade) {
     try {
-      const updatedBook = await Book.findByIdAndUpdate(bookId, bookData, {
-        new: true,
-      });
-      return updatedBook;
+      const book = await Book.findById(bookId);
+      if (!book) {
+        throw new Error("Livre non trouvé");
+      }
+      const existingRating = book.ratings.find(
+        (rating) => rating.userId === userId
+      );
+      if (existingRating) {
+        throw new Error("Vous avez déjà noté ce livre");
+      }
+
+      book.ratings.push({ userId, grade });
+      const ratings = book.ratings;
+      const sum = ratings.reduce((acc, rating) => acc + rating.grade, 0);
+      const averageRating = parseFloat((sum / ratings.length).toFixed(2));
+
+      book.averageRating = averageRating;
+      return await book.save();
     } catch (error) {
       throw new Error(error);
     }
   }
   async bestRating() {
     try {
-      const books = await Book.find().sort({ averageRating: -1 }).limit(3);
-      return books;
+      return await Book.find().sort({ averageRating: -1 }).limit(3);
     } catch (error) {
       throw new Error(error);
     }
