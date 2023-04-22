@@ -68,6 +68,39 @@ class BookService {
       throw new Error(error);
     }
   }
+  async deleteBook(bookId, userId) {
+    try {
+      const book = await Book.findById(bookId);
+
+      if (!book) {
+        throw new Error("Livre non trouvé");
+      }
+      if (book.userId != userId) {
+        throw new Error("L'utilisateur ne peut pas supprimer ce livre");
+      }
+      await Book.deleteOne({ _id: bookId });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async addBookRating(bookId, bookData) {
+    try {
+      const updatedBook = await Book.findByIdAndUpdate(bookId, bookData, {
+        new: true,
+      });
+      return updatedBook;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async bestRating() {
+    try {
+      const books = await Book.find().sort({ averageRating: -1 }).limit(3);
+      return books;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 const bookService = new BookService();
