@@ -35,6 +35,39 @@ class BookService {
       throw new Error(error);
     }
   }
+  async modifyBook(bookId, bookData, userId) {
+    try {
+      const book = await Book.findById(bookId);
+
+      if (!book) {
+        throw new Error("Livre non trouvé");
+      }
+
+      if (book.userId !== userId) {
+        throw new Error("Utilisateur non autorisé à modifier ce livre");
+      }
+
+      const updatedBookData = {
+        title: bookData.title || book.title,
+        author: bookData.author || book.author,
+        year: bookData.year || book.year,
+        genre: bookData.genre || book.genre,
+        ratings: bookData.ratings || book.ratings,
+        imageUrl: bookData.imageUrl || book.imageUrl,
+        averageRating: bookData.averageRating || book.averageRating,
+      };
+
+      const updatedBook = await Book.findByIdAndUpdate(
+        bookId,
+        updatedBookData,
+        { new: true }
+      );
+
+      return updatedBook;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 const bookService = new BookService();
