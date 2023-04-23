@@ -10,13 +10,13 @@ class UserService {
         email: userEmail,
         password: hash,
       });
-      return user.save();
+      return await user.save();
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  async login(userPassword, userEmail, password) {
+  async login(userPassword, userEmail) {
     try {
       const user = await User.findOne({ email: userEmail });
       if (!user) {
@@ -26,7 +26,12 @@ class UserService {
       if (!isValidPassword) {
         throw new Error("Paire identifiant/mot de passe incorrecte");
       }
-      return user;
+      return {
+        userId: user._id,
+        token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+          expiresIn: "24h",
+        }),
+      };
     } catch (error) {
       throw new Error(error);
     }
