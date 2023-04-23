@@ -110,6 +110,4 @@ class BookService {
   }
 }
 
-const bookService = new BookService();
-
-module.exports = bookService;
+module.exports = new BookService();
