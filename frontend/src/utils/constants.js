@@ -1,4 +1,4 @@
-const API_URL = 'http://mon-vieux-grimoire.rukia.fr:4000';
+const API_URL = 'http://mon-vieux-grimoire.rukia.fr:4002';
 
 export const API_ROUTES = {
   SIGN_UP: `${API_URL}/api/auth/signup`,
