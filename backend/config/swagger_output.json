@@ -5,13 +5,84 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "localhost:3000",
+  "host": "mon-vieux-grimoire.rukia.fr:4002",
   "basePath": "/",
   "schemes": [
     "http"
   ],
   "paths": {
-    "/": {
+    "/ping": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/signup": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/books/": {
       "get": {
         "description": "",
         "parameters": [],
@@ -61,7 +132,7 @@
         }
       }
     },
-    "/bestrating": {
+    "/api/books/bestrating": {
       "get": {
         "description": "",
         "parameters": [],
@@ -75,7 +146,7 @@
         }
       }
     },
-    "/{id}": {
+    "/api/books/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -165,7 +236,7 @@
         }
       }
     },
-    "/{id}/rating": {
+    "/api/books/{id}/rating": {
       "post": {
         "description": "",
         "parameters": [
@@ -205,70 +276,6 @@
           }
         }
       }
-    },
-    "/signup": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/login": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
     }
-  },
-  "apis": [
-    "../routes/book.js",
-    "../routes/user.js"
-  ]
+  }
 }

@@ -108,7 +108,7 @@ router.get("/:id", bookCtrl.getBook);
  * @swagger
  * /book/{id}:
  *   delete:
- *     summary: Supprime un livre par son identifiant.
+ *     summary: Supprime un livre par son identifiant si l'utilisateur l'a créé.
  *     tags:
  *       - Livres
  *     security:
@@ -136,7 +136,7 @@ router.delete("/:id", auth, bookCtrl.deleteBook);
  * @swagger
  * /book/{id}:
  *   put:
- *     summary: Modifie un livre par son identifiant.
+ *     summary: Modifie un livre par son identifiant si l'utilisateur a créé le livre.
  *     tags:
  *       - Livres
  *     security:

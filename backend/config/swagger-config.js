@@ -3,6 +3,5 @@ module.exports = {
     title: 'Mon vieux grimoire API',
     version: '1.0.0',
   },
-  // Path to the API docs
-  apis: ['../routes/book.js', '../routes/user.js'],
+  host: 'mon-vieux-grimoire.rukia.fr:4002',
 };
