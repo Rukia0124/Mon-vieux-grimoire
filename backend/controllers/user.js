@@ -18,9 +18,11 @@ exports.login = (req, res, next) => {
   userService
     .login(userPassword, userEmail)
     .then((token) => {
+      console.log(token);
       res.status(200).json(token);
     })
     .catch((error) => {
+      console.log(error);
       res.status(400).json({ error: error.message });
     });
 };

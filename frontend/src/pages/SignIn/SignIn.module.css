@@ -10,23 +10,25 @@
     box-sizing: border-box;
 }
 
-.Notification.Error p{
-    background-color: rgba(255,0,15,0.24);
+.Notification.Error p {
+    background-color: rgba(255, 0, 15, 0.24);
     border-color: #D70000;
 }
-.Notification p{
+
+.Notification p {
     box-sizing: border-box;
     width: 100%;
     padding: 20px 50px;
     background-color: #F9F3EE;
     border: solid 2px #D9A963;
 }
+
 .Form {
     display: flex;
     flex-direction: column;
 }
 
-.Form{
+.Form {
     background-color: #F9F3EE;
     width: 30%;
     margin: auto;
@@ -35,7 +37,9 @@
     margin-block: 50px;
 
 }
-.Form, .Form label {
+
+.Form,
+.Form label {
     display: flex;
     flex-direction: column;
     font-family: "DM Sans", sans-serif;
@@ -44,7 +48,7 @@
 
 }
 
-.Form input[type="file"]{
+.Form input[type="file"] {
     display: none;
 }
 
@@ -54,9 +58,11 @@
     object-fit: cover;
     object-position: center;
 }
+
 .Form label {
     width: 100%;
 }
+
 .Form label p {
     margin-bottom: 15px;
 }
@@ -69,6 +75,7 @@
     margin-bottom: 35px;
 
 }
+
 .Submit {
     display: flex;
     align-items: center;
@@ -88,6 +95,7 @@
     .Submit {
         flex-direction: column;
     }
+
     .Submit span {
         margin-block: 20px;
     }

@@ -40,6 +40,6 @@ app.use("/api/auth", userRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = app;
