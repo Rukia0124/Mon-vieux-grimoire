@@ -12,7 +12,7 @@ To install the application, follow the steps below:
 git clone https://github.com/Rukia0124/Mon-vieux-grimoire.git
 
 2. Navigate to the backend directory:
-cd book-rating-app/backend
+cd backend
 
 3. Install the dependencies:
 npm install
@@ -27,7 +27,7 @@ nodemon server
 #Front-end
 
 1.Navigate to the frontend directory:
-cd book-rating-app/frontend
+cd frontend
 
 2.Install the dependencies:
 npm install
