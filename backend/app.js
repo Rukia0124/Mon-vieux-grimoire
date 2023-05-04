@@ -10,7 +10,7 @@ const swaggerDocument = require('./config/swagger_output.json');
 const app = express();
 mongoose
   .connect(
-    "mongodb+srv://Rukia:XJlsSi1f2j1OdnQI@cluster0.ayhtpuu.mongodb.net/api",
+    process.env.DB_LINK,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
