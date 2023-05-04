@@ -28,16 +28,16 @@ nodemon server
 
 ### Front-end
 
-1.Navigate to the frontend directory:
+1. Navigate to the frontend directory:
 cd frontend
 
-2.Install the dependencies:
+2. Install the dependencies:
 npm install
 
 3. Add a .env file containing:
 REACT_APP_API_URL="http://localhost:PORT"
 
-4.Start the application:
+4. Start the application:
 npm start
 
 ## How to Use the Application
