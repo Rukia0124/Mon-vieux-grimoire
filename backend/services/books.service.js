@@ -23,7 +23,7 @@ class BookService {
       });
       return await book.save();
     } catch (error) {
-      throw new Error(error);
+      throw new Error("error");
     }
   }
   async getBook(bookId) {
@@ -42,7 +42,7 @@ class BookService {
       }
 
       if (book.userId !== userId) {
-        throw new Error("Utilisateur non autorisé à modifier ce livre");
+        throw new Error("Vous n'êtes pas autorisé à modifier ce livre");
       }
 
       const updatedBookData = {
@@ -70,7 +70,7 @@ class BookService {
         throw new Error("Livre non trouvé");
       }
       if (book.userId != userId) {
-        throw new Error("L'utilisateur ne peut pas supprimer ce livre");
+        throw new Error("Vous n'êtes pas autorisé à supprimer ce livre");
       }
       await Book.deleteOne({ _id: bookId });
     } catch (error) {
