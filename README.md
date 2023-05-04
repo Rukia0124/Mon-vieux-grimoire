@@ -9,7 +9,7 @@ To install the application, follow the steps below:
 #Back-end
 
 1. Clone the project from the GitHub repository:
-git clone https://github.com/your-username/book-rating-app.git
+git clone https://github.com/Rukia0124/Mon-vieux-grimoire.git
 
 2. Navigate to the backend directory:
 cd book-rating-app/backend
