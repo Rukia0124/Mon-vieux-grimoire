@@ -22,6 +22,7 @@ npm install
 4. Add a .env file containing:
 SECRET_TOKEN="YOUR_SECRET_TOKEN"
 DB_LINK="YOUR_MONGODB_URL"
+API_URL"http://localhost:PORT"
 
 5. Start the server:
 nodemon server
