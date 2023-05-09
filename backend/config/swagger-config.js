@@ -3,5 +3,5 @@ module.exports = {
     title: 'Mon vieux grimoire API',
     version: '1.0.0',
   },
-  host: 'mon-vieux-grimoire.rukia.fr:4002',
+  host: process.env.API_URL,
 };
