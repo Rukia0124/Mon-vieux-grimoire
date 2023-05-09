@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const bookRoutes = require("./routes/book");
 const path = require("path");
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./config/swagger_output.json')
 
 const app = express();
 mongoose
@@ -37,6 +39,6 @@ app.use(express.json());
 app.use("/api/auth", userRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
-
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 module.exports = app;
